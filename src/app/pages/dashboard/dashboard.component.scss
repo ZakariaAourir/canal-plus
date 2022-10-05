@@ -36,6 +36,8 @@
 }
 
 .container-refresh {
-    float: right;
-    margin-bottom: 15px;
+    display: flex;
+    button {
+        margin-left: auto;
+    }
 }

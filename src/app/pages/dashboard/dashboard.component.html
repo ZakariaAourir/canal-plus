@@ -1,11 +1,11 @@
 <nb-card>
   <nb-card-header>
-    Data
-  </nb-card-header>
-  <nb-card-body>
     <div class="container-refresh">
+      <h5>Data</h5>
       <button (click)="refreshData()" nbButton status="primary">Refresh data</button>
     </div>
+  </nb-card-header>
+  <nb-card-body>
     <ng2-smart-table [settings]="settings" allowPaging='true' [source]="data" (edit)="edit(dialogEdit,$event)">
     </ng2-smart-table>
   </nb-card-body>
