@@ -1,0 +1,38 @@
+<nb-card>
+  <nb-card-header>
+    Data
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" allowPaging='true' [source]="data" (edit)="edit(dialogEdit,$event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+<!-- dialog to edit data -->
+<ng-template #dialogEdit let-refEdit="dialogRef">
+  <nb-card class="container-card">
+    <nb-card-header>
+      <h5>Edit data</h5>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="editForm" class="container-form">
+        <div class="container-inputs form-group">
+          <label class="label-col" for="title">Title</label>
+          <input nbInput fullWidth fieldSize="medium" type="text" formControlName="title"/>
+        </div>
+        <div class="container-inputs form-group">
+            <label class="label-col" for="rt">Start year</label>
+            <input nbInput fullWidth fieldSize="medium" type="text" formControlName="year"/>
+        </div>
+        <div class="container-inputs form-group">
+          <label class="label-col" for="genre">Genre</label>
+          <input nbInput fullWidth fieldSize="medium" type="text" formControlName="genre"/>
+        </div>
+      </form> 
+    </nb-card-body>
+    <nb-card-footer class="container-footer">
+      <button nbButton status="danger" (click)="closeEdit(refEdit)">Cancel</button>
+      <button nbButton status="success" [disabled]="!editForm.valid" (click)="confirmEdit(refEdit)">Confirm</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,36 @@
+.container-card {
+    border-radius: 10px;
+    .container-footer {
+        text-align: center;
+        button {
+            margin: 0 5px;
+        }
+    }
+    .container-actions {
+        .container-btns {
+            display: grid;
+            margin: 20px 70px;
+            span, button {
+                margin-bottom: 15px;
+            }
+        }
+        .container-edit-buttons {
+            text-align: center;
+            display: block;
+            .edit-data {
+                width: 100%;
+            }
+            .edit-left {
+                width: 49%;
+                float: left;
+            }
+            .edit-right {
+                width: 49%;
+                float: right;
+            }
+            button {
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
