@@ -14,6 +14,7 @@ The project contains mainly :
 
 Down bellow, are the steps to install the project localy. This project doesn't rely on any external services.
 
+0. Make sure to install dependecies needed to run Angular application : Angular CLI, Node and Typescript
 1. Clone the repo
     ```sh
     git clone https://github.com/ZakariaAourir/canal-plus.git
