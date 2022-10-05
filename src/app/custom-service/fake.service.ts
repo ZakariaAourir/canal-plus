@@ -12,6 +12,6 @@ export class FakeService {
    }
 
    updateData(payload, id) {
-    return this.http.put<any>(`http://localhost:4200/update/`+id, payload);
+    return this.http.put(`http://localhost:4200/update/`+id, payload);
    }
 }

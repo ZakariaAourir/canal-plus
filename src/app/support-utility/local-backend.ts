@@ -7,6 +7,7 @@ import * as data2 from '../data/data.json';
 @Injectable()
 export class LocalBackendInterceptor implements HttpInterceptor {
 
+    data:any;
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -16,15 +17,25 @@ export class LocalBackendInterceptor implements HttpInterceptor {
 
             // return the list of data - mock
             if(request.url.endsWith('/data') && request.method === 'GET') {
-                let data = data2;
-                return of(new HttpResponse({ status: 200, body: data }));
+                this.data = data2;
+                return of(new HttpResponse({ status: 200, body: this.data }));
             }
-            debugger
-            if(request.url.match(/\/update\/\d+$/) && request.method === 'PUT') {
-                debugger
+
+            // update the element of data - mock
+            if(request.url.split('/')[3] === 'update' && request.method === 'PUT') {
                 let urlParts = request.url.split('/');
-                let id = parseInt(urlParts[urlParts.length - 1]);
-                console.log("test", id)
+                let id = urlParts[urlParts.length - 1];
+                let payload = request.body;
+                let tempData = JSON.parse(localStorage.getItem('data'));
+                tempData.forEach(element => {
+                    if(element['tconst'] === id) {
+                        element['genres'] = payload['genres'];
+                        element['originalTitle'] = payload['originalTitle'];
+                        element['startYear'] = payload['startYear'];
+                    }
+                });
+                localStorage.setItem('data', JSON.stringify(tempData));
+                return of(new HttpResponse({ status: 200, body: this.data }));
             }
 
 

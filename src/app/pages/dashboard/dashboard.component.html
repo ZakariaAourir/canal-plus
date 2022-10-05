@@ -3,6 +3,9 @@
     Data
   </nb-card-header>
   <nb-card-body>
+    <div class="container-refresh">
+      <button (click)="refreshData()" nbButton status="primary">Refresh data</button>
+    </div>
     <ng2-smart-table [settings]="settings" allowPaging='true' [source]="data" (edit)="edit(dialogEdit,$event)">
     </ng2-smart-table>
   </nb-card-body>

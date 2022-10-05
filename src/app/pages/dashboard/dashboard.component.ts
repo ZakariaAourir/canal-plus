@@ -34,18 +34,9 @@ export class DashboardComponent implements OnInit {
       genres: {
         title: 'Genres'
       },
-      runtimeMinutes: {
-        title: 'Runtime Minutes'
-      },
       startYear: {
         title: 'Start Year'
-      },
-      titleType: {
-        title: 'Title Type'
-      },
-      isAdult: {
-        title: 'Is Adult'
-      },
+      }
     }
   };
   data:any;
@@ -72,6 +63,7 @@ export class DashboardComponent implements OnInit {
     this.fakeService.data().subscribe(
       (response) => {
         this.data = response.default;
+        localStorage.setItem('data', JSON.stringify(this.data));
         this.toastr.success("Data imported succesfully");
       }, (error) => {
         this.toastr.error(error);
@@ -100,10 +92,7 @@ export class DashboardComponent implements OnInit {
       year: event?.data?.startYear ? event?.data?.startYear : "",
       genre: event?.data?.genres ? event?.data?.genres : "",
     };
-    debugger
     this.editForm.patchValue(editData);
-    debugger
-    console.log(event);
     this.dialogService.open(dialog);
   }
 
@@ -126,11 +115,19 @@ export class DashboardComponent implements OnInit {
     this.fakeService.updateData(payload, this.selectedData.tconst).subscribe(
       (response) => {
         this.toastr.success("Data is updated succesfully");
+        this.data = JSON.parse(localStorage.getItem('data'));
         refEdit.close();
       }, (error) => {
         this.toastr.error(error);
       }
     )
+  }
+
+  /**
+   * refresh data
+   * */ 
+  refreshData() {
+    this.getAllData();
   }
 
 }
