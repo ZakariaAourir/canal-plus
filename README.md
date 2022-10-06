@@ -19,15 +19,19 @@ Down bellow, are the steps to install the project localy. This project doesn't r
     ```sh
     git clone https://github.com/ZakariaAourir/canal-plus.git
     ```
-2. Install NPM packages
+2. Enter to project folder
+    ```sh
+    cd canal-plus
+    ```
+3. Install NPM packages
     ```sh
     npm install
     ```
-3. Run the project
+4. Run the project
     ```sh
     npm start
     ```
-4. Access the poject localy
+5. Access the poject localy
     ```sh
     http://localhost:4200/
     ```
